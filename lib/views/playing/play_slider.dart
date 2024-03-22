@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/entities/logger.dart';
 import 'package:cisum/provider/player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,6 @@ class _PlaySliderState extends State<PlaySlider> {
       setState(() {
         position = p;
         _currentSliderValue = p.inSeconds.toDouble() / duration.inSeconds.toDouble() * 100;
-        // logger.d("position: $position, _currentSliderValue: $_currentSliderValue");
       });
     });
 
@@ -57,21 +55,13 @@ class _PlaySliderState extends State<PlaySlider> {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(0),
-                // color: Colors.blueAccent,
                 child: Slider(
-                  // divisions: 10,
-                  // secondaryActiveColor: Colors.indigo,
-                  // thumbColor: Colors.red,
-                  // overlayColor: MaterialStateProperty.all(Colors.red),
-                  // activeColor: Colors.yellowAccent,
                   value: _currentSliderValue,
                   min: 0,
                   max: 100,
                   onChangeStart: (value) => setState(() => isEditing = true),
                   onChangeEnd: (value) async {
                     var d = Duration(seconds: ((value / 100) * duration.inSeconds).toInt());
-                    logger.d("onChangeEnd: ${d.toString()}");
-                    logger.d("goto: $d");
                     await player.seek(d);
 
                     setState(() {
@@ -79,7 +69,6 @@ class _PlaySliderState extends State<PlaySlider> {
                     });
                   },
                   onChanged: (double value) async {
-                    logger.d("onChanged: $value");
                     setState(() => _currentSliderValue = value);
 
                     var d = Duration(seconds: ((value / 100) * duration.inSeconds).toInt());

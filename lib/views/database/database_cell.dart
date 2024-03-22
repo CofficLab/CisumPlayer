@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:cisum/entities/audio.dart';
 import 'package:cisum/provider/player.dart';
-import 'package:cisum/provider/playlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_context_menu/super_context_menu.dart';
@@ -14,6 +13,8 @@ class DatabaseCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var playerProvider = context.read<PlayerProvider>();
+
     return ContextMenuWidget(
       child: Container(
         alignment: Alignment.centerLeft,
@@ -35,7 +36,7 @@ class DatabaseCell extends StatelessWidget {
           children: [
             MenuAction(
                 callback: () {
-                  context.read<PlayerProvider>().play(audio: audio);
+                  playerProvider.play(audio: audio);
                 },
                 title: '播放'),
             MenuAction(
@@ -55,7 +56,8 @@ class DatabaseCell extends StatelessWidget {
             MenuAction(
                 title: '删除',
                 callback: () {
-                  context.read<PlaylistProvider>().delete(audio);
+                  audio.delete();
+                  context.read<PlayerProvider>().delete(audio);
                 }),
           ],
         );

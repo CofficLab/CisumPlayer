@@ -1,6 +1,5 @@
 import 'package:cisum/entities/audio.dart';
 import 'package:cisum/entities/logger.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class MediaChannel {

@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:cisum/components/button_control.dart';
 import 'package:cisum/provider/player.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +13,9 @@ class ButtonToggle extends StatefulWidget {
 class _ButtonToggleState extends State<ButtonToggle> {
   @override
   Widget build(BuildContext context) {
-    PlayerState state = context.select<PlayerProvider, PlayerState>((PlayerProvider state) => state.player.getState());
+    var playing = context.select<PlayerProvider, bool>((PlayerProvider state) => state.isPlaying());
     return ButtonControl(
-      icon: Icon(state == PlayerState.playing ? Icons.pause : Icons.play_arrow),
+      icon: Icon(playing ? Icons.pause : Icons.play_arrow),
       onPressed: () async {
         await context.read<PlayerProvider>().toggle();
       },

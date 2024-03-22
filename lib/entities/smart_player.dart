@@ -1,17 +1,13 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cisum/channels/media_channel.dart';
 import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/database.dart';
 import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/playlist.dart';
+import 'package:cisum/mixin/play_control.dart';
 
-class SmartPlayer {
-  final AudioPlayer player = AudioPlayer();
+class SmartPlayer with PlayControlMixin {
   final Function onPlaying;
   final Function onPaused;
   final Function onAudioChange;
-  var playList = PlaylistModel.emptyPlayList;
-  var audio = AudioModel.emptyAudioModel;
   late MediaChannel mediaChannel;
 
   SmartPlayer({required this.onPlaying, required this.onPaused, required this.onAudioChange}) {
@@ -27,13 +23,6 @@ class SmartPlayer {
       seek("MediaChannel asked to onChangePlaybackPositionCommand",
           Duration(microseconds: (duration * 1000 * 1000).toInt()));
     });
-
-    DatabaseModel.getPlaylist().then((value) {
-      playList = value;
-      audio = playList.audios.first;
-    });
-
-    player.setPlayerMode(PlayerMode.mediaPlayer);
 
     player.onPlayerStateChanged.listen((event) {
       updateMediaCenter();
@@ -53,58 +42,23 @@ class SmartPlayer {
 
     player.onPlayerComplete.listen((event) {
       next("onPlayerComplete");
+      player.resume();
     });
   }
 
-  PlayerState getState() {
-    return player.state;
-  }
-
-  setAudio(AudioModel audio) {
-    this.audio = audio;
-    player.setSourceDeviceFile(audio.file.path);
+  setAudio(AudioModel audio) async {
+    await player.setSourceDeviceFile(list.activate(audio));
     updateMediaCenter();
     onAudioChange();
-    logger.d("SmartPlayer::设置当前Audio: ${audio.getTitle()}");
-  }
-
-  play(String reason, {AudioModel? audio}) {
-    logger.d("SmartPlayer::play, for $reason");
-    if (audio != null) {
-      setAudio(audio);
-    }
-
-    switch (player.state) {
-      case PlayerState.paused:
-        player.resume();
-        break;
-      case PlayerState.stopped:
-        player.play(DeviceFileSource(this.audio.file.path),
-            mode: PlayerMode.mediaPlayer, position: const Duration(seconds: 0));
-      case PlayerState.playing:
-      default:
-        break;
-    }
-  }
-
-  seek(String reason, Duration duration) {
-    logger.d("SmartPlayer::seek, duration: $duration,for $reason");
-    player.seek(duration);
   }
 
   next(String reason) {
-    logger.d("SmartPlayer::next, for $reason");
-    setAudio(playList.getNext());
+    logger.d("SmartPlayer::next 🐛 $reason");
+    setAudio(getNextAudio(reason));
   }
 
   pre(String reason) {
-    logger.d("SmartPlayer::pre, for $reason");
-    setAudio(playList.getPre());
-  }
-
-  pause(String reason) {
-    logger.d("SmartPlayer::pause, for $reason");
-    player.pause();
+    setAudio(getPreviousAudio(reason));
   }
 
   toggle() async {
@@ -117,25 +71,15 @@ class SmartPlayer {
     }
 
     if (player.state == PlayerState.stopped) {
-      return await play("toggle", audio: audio);
+      return await play("PlayControlMixin::toggle");
     }
 
     if (player.state == PlayerState.completed) {
-      return;
+      return player.resume();
     }
   }
 
   updateMediaCenter() async {
-    mediaChannel.setMeta(
-        audio: audio, state: getState().name, current: (await player.getCurrentPosition())!.inSeconds.toString());
-  }
-
-  getTitle() {
-    return audio.getTitle();
-  }
-
-  dispose() {
-    player.stop();
-    player.dispose();
+    mediaChannel.setMeta(audio: list.getCurrent(), state: getState().name, current: await getCurrentPosition());
   }
 }

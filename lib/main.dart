@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cisum/menus.dart';
 import 'package:cisum/provider/player.dart';
-import 'package:cisum/provider/playlist.dart';
 import 'package:cisum/views/database/database.dart';
 import 'package:cisum/views/playing/playing.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +54,6 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PlayerProvider()),
-        ChangeNotifierProvider(create: (context) => PlaylistProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

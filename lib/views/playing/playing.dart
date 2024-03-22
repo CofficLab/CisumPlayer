@@ -28,7 +28,7 @@ class _PlayingState extends State<Playing> {
       ),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             flex: 9,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

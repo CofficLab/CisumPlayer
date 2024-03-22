@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cisum/channels/media_channel.dart';
 import 'package:cisum/entities/audio.dart';
 import 'package:cisum/entities/logger.dart';
@@ -19,11 +20,15 @@ class PlayerProvider extends ChangeNotifier {
   }
 
   AudioModel getAudio() {
-    return player.audio;
+    return player.getPlaylist().getCurrent();
   }
 
   String getTitle() {
     return player.getTitle();
+  }
+
+  bool isPlaying() {
+    return player.getState() == PlayerState.playing;
   }
 
   next() {
@@ -38,11 +43,16 @@ class PlayerProvider extends ChangeNotifier {
 
   play({AudioModel? audio}) {
     player.play("PlayerProvider::play", audio: audio);
+    notifyListeners();
   }
 
   toggle() async {
-    logger.d("PlayerProvider::toggle");
     await player.toggle();
+    notifyListeners();
+  }
+
+  void delete(AudioModel audio) {
+    player.deleteAudio(audio);
     notifyListeners();
   }
 

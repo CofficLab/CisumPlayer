@@ -10,7 +10,7 @@ class PlayControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.amber.withOpacity(0),
-      child: Row(
+      child: const Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

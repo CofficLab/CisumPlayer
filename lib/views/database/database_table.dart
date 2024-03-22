@@ -1,13 +1,16 @@
 import 'package:cisum/entities/audio.dart';
+import 'package:cisum/entities/database.dart';
 import 'package:cisum/entities/logger.dart';
+import 'package:cisum/entities/playlist.dart';
 import 'package:cisum/provider/player.dart';
-import 'package:cisum/provider/playlist.dart';
 import 'package:cisum/views/database/database_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DatabaseTable extends StatefulWidget {
-  const DatabaseTable({super.key});
+  const DatabaseTable({super.key, required this.playlist});
+
+  final PlaylistModel playlist;
 
   @override
   State<DatabaseTable> createState() => _DatabaseTableState();
@@ -16,11 +19,14 @@ class DatabaseTable extends StatefulWidget {
 class _DatabaseTableState extends State<DatabaseTable> {
   @override
   Widget build(BuildContext context) {
-    var playList = context.select((PlaylistProvider value) => value.playList);
-    var audios = playList.audios;
-    var current = context.select((PlayerProvider value) => value.getAudio());
-    logger.d("构建 DataTable，audios.count = ${audios.length}, current = ${current.getTitle()}");
+    var current = context.select<PlayerProvider, AudioModel>((value) => value.getAudio());
 
+    logger.d("构建 DataTable");
+
+    return makeTable(widget.playlist, current);
+  }
+
+  makeTable(PlaylistModel playlist, AudioModel current) {
     return DataTable(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       horizontalMargin: 12,
@@ -34,24 +40,19 @@ class _DatabaseTableState extends State<DatabaseTable> {
       columns: const [
         DataColumn(label: Text('歌曲')),
       ],
-      rows: makeRows(audios, current),
+      rows: makeRows(playlist, current),
     );
   }
 
-  onSelectedChanged(AudioModel audio) {
-    context.read<PlayerProvider>().play(audio: audio);
-    setState(() {});
-  }
-
-  makeRows(List<AudioModel> audios, AudioModel current) {
-    return audios
+  makeRows(PlaylistModel playlist, AudioModel current) {
+    return playlist.audios
         .map((audio) => DataRow(
                 selected: current.sameTo(audio),
                 onLongPress: () {
                   logger.d("onLongPress: ${audio.file.path}");
                 },
                 onSelectChanged: (value) {
-                  onSelectedChanged(audio);
+                  context.read<PlayerProvider>().play(audio: audio);
                 },
                 cells: [
                   DataCell(
