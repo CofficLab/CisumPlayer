@@ -10,13 +10,9 @@ class PlayerProvider extends ChangeNotifier {
   late MediaChannel mediaChannel;
 
   PlayerProvider() {
-    player = SmartPlayer(onPlaying: () {
-      notifyListeners();
-    }, onPaused: () {
-      notifyListeners();
-    }, onAudioChange: () {
-      notifyListeners();
-    });
+    player = SmartPlayer();
+    player.onAudioChanged(notifyListeners);
+    player.onPlaying(notifyListeners);
   }
 
   AudioModel getAudio() {
@@ -29,21 +25,6 @@ class PlayerProvider extends ChangeNotifier {
 
   bool isPlaying() {
     return player.getState() == PlayerState.playing;
-  }
-
-  next() {
-    player.next("PlayerProvider::next");
-    notifyListeners();
-  }
-
-  pre() {
-    player.pre("PlayerProvider::pre");
-    notifyListeners();
-  }
-
-  play({AudioModel? audio}) {
-    player.play("PlayerProvider::play", audio: audio);
-    notifyListeners();
   }
 
   toggle() async {

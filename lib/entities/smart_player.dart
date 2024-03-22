@@ -3,14 +3,12 @@ import 'package:cisum/channels/media_channel.dart';
 import 'package:cisum/entities/audio.dart';
 import 'package:cisum/entities/logger.dart';
 import 'package:cisum/mixin/play_control.dart';
+import 'package:cisum/mixin/play_callback.dart';
 
-class SmartPlayer with PlayControlMixin {
-  final Function onPlaying;
-  final Function onPaused;
-  final Function onAudioChange;
+class SmartPlayer with PlayControlMixin, PlayCallbackMixin {
   late MediaChannel mediaChannel;
 
-  SmartPlayer({required this.onPlaying, required this.onPaused, required this.onAudioChange}) {
+  SmartPlayer() {
     mediaChannel = MediaChannel(onPause: () {
       pause("MediaChannel asked to pause");
     }, onPlay: () {
@@ -22,6 +20,7 @@ class SmartPlayer with PlayControlMixin {
     }, onChangePlaybackPosition: (double duration) {
       seek("MediaChannel asked to onChangePlaybackPositionCommand",
           Duration(microseconds: (duration * 1000 * 1000).toInt()));
+      positionChangeCallback();
     });
 
     player.onPlayerStateChanged.listen((event) {
@@ -30,10 +29,10 @@ class SmartPlayer with PlayControlMixin {
       switch (event) {
         case PlayerState.playing:
           logger.d("SmartPlayer::onPlaying");
-          onPlaying();
+          playingCallback();
           break;
         case PlayerState.paused:
-          onPaused();
+          pausedCallback();
           break;
         default:
           break;
@@ -49,7 +48,7 @@ class SmartPlayer with PlayControlMixin {
   setAudio(AudioModel audio) async {
     await player.setSourceDeviceFile(list.activate(audio));
     updateMediaCenter();
-    onAudioChange();
+    audioChangedCallback();
   }
 
   next(String reason) {
@@ -71,7 +70,7 @@ class SmartPlayer with PlayControlMixin {
     }
 
     if (player.state == PlayerState.stopped) {
-      return await play("PlayControlMixin::toggle");
+      return play("PlayControlMixin::toggle");
     }
 
     if (player.state == PlayerState.completed) {
@@ -80,6 +79,6 @@ class SmartPlayer with PlayControlMixin {
   }
 
   updateMediaCenter() async {
-    mediaChannel.setMeta(audio: list.getCurrent(), state: getState().name, current: await getCurrentPosition());
+    mediaChannel.setMeta(audio: list.getCurrent(), state: getState().name, current: await getPosition());
   }
 }

@@ -14,7 +14,7 @@ class ButtonPre extends StatelessWidget {
         child: ButtonControl(
             icon: const Icon(Icons.skip_previous),
             onPressed: () {
-              context.read<PlayerProvider>().pre();
+              context.read<PlayerProvider>().player.pre("点击了上一首");
             }));
   }
 }

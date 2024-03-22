@@ -14,7 +14,7 @@ class ButtonNext extends StatelessWidget {
       child: ButtonControl(
           icon: const Icon(Icons.skip_next_rounded),
           onPressed: () {
-            context.read<PlayerProvider>().next();
+            context.read<PlayerProvider>().player.next("点击了下一首");
           }),
     );
   }

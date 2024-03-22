@@ -7,11 +7,11 @@ mixin PlayControlMixin {
   AudioPlayer player = AudioPlayer();
   PlaylistModel list = PlaylistModel.emptyPlayList;
 
-  getTitle() {
+  String getTitle() {
     return list.getCurrent().getTitle();
   }
 
-  Future<String> getCurrentPosition() async {
+  Future<String> getPosition() async {
     return (await player.getCurrentPosition())!.inSeconds.toString();
   }
 
@@ -19,17 +19,13 @@ mixin PlayControlMixin {
     return player.state;
   }
 
-  pause(String reason) {
+  void pause(String reason) {
     logger.d("PlayControlMixin::pause, for $reason");
     player.pause();
   }
 
-  play(String reason, {AudioModel? audio}) {
-    logger.d("PlayControlMixin::play, for $reason");
-
-    if (audio != null) {
-      list.setCurrent(audio);
-    }
+  void play(String reason) {
+    logger.d("PlayControlMixin::play 🐛 $reason");
 
     if (list.getCurrent().isEmpty()) {
       logger.d("PlayControlMixin::play, this.audio is empty");
@@ -49,7 +45,7 @@ mixin PlayControlMixin {
     }
   }
 
-  seek(String reason, Duration duration) {
+  void seek(String reason, Duration duration) {
     logger.d("SmartPlayer::seek, duration: $duration,for $reason");
     player.seek(duration);
   }

@@ -36,7 +36,8 @@ class DatabaseCell extends StatelessWidget {
           children: [
             MenuAction(
                 callback: () {
-                  playerProvider.play(audio: audio);
+                  playerProvider.player.setAudio(audio);
+                  playerProvider.player.play("右键单击播放");
                 },
                 title: '播放'),
             MenuAction(

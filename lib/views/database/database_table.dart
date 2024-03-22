@@ -52,7 +52,8 @@ class _DatabaseTableState extends State<DatabaseTable> {
                   logger.d("onLongPress: ${audio.file.path}");
                 },
                 onSelectChanged: (value) {
-                  context.read<PlayerProvider>().play(audio: audio);
+                  context.read<PlayerProvider>().player.setAudio(audio);
+                  context.read<PlayerProvider>().player.play("点击了播放列表");
                 },
                 cells: [
                   DataCell(
