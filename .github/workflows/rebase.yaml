@@ -1,0 +1,33 @@
+# main更新时，dev基于main进行rebase
+
+on:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows:
+      - "Bump"
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+name: Rebase
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取 dev 分支
+        uses: actions/checkout@v2
+        with:
+          ref: dev
+      - name: 拉取 main 分支
+        run: git fetch origin main
+      - name: Rebase dev on main
+        continue-on-error: true
+        run: git rebase origin/main
+      - name: Push the rebased dev branch
+        continue-on-error: true
+        run: git push origin dev

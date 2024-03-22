@@ -1,0 +1,54 @@
+# main有更新时，版本号加1并打标签
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+name: Bump
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 更新构建号
+        run: |
+          version=$(sed -n 's/version: \([0-9.]*\)/\1/p' pubspec.yaml)
+
+          # 将版本号拆分成主版本、次版本、修订版本和构建号
+          major=$(echo $version | cut -d. -f1)
+          minor=$(echo $version | cut -d. -f2)
+          patch=$(echo $version | cut -d. -f3 | cut -d+ -f1)
+          build=$(echo $version | cut -d+ -f2)
+
+          # 将修订版本和构建号加1
+          patch=$((patch + 1))
+          build=$((build + 1))
+
+          # 更新版本号
+          new_version="$major.$minor.$patch+$build"
+
+          echo "新版本号: $new_version"
+
+          # 更新pubspec.yaml文件中的版本号
+          sed -i "s/version: $version/version: $new_version/g" pubspec.yaml
+
+          echo "版本号已更新"
+      - name: 生成标签
+        run: |
+          version=$(sed -n 's/version: \([0-9.]*\)/\1/p' pubspec.yaml)
+          date=$(date +"%Y%m%d")
+
+          echo "tag=v$version($date)" >> $GITHUB_ENV
+      - name: 打标签并推送到仓库
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore(workflow): Bump a new version'
+          commit_user_name: GitHub Action
+          tagging_message: ${{ env.tag }}
+          file_pattern: '*.yaml'
