@@ -2,7 +2,7 @@ import 'package:cisum/entities/audio.dart';
 import 'package:cisum/entities/logger.dart';
 import 'package:cisum/provider/player.dart';
 import 'package:cisum/provider/playlist.dart';
-import 'package:cisum/views/database_cell.dart';
+import 'package:cisum/views/database/database_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

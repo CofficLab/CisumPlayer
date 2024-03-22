@@ -1,7 +1,6 @@
-import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/views/button_next.dart';
-import 'package:cisum/views/button_pre.dart';
-import 'package:cisum/views/button_toggle.dart';
+import 'package:cisum/views/buttons/button_next.dart';
+import 'package:cisum/views/buttons/button_pre.dart';
+import 'package:cisum/views/buttons/button_toggle.dart';
 import 'package:flutter/material.dart';
 
 class PlayControl extends StatelessWidget {

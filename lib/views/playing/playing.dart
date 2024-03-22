@@ -1,8 +1,8 @@
 import 'package:cisum/provider/player.dart';
-import 'package:cisum/views/play_control.dart';
-import 'package:cisum/views/play_cover.dart';
-import 'package:cisum/views/play_slider.dart';
-import 'package:cisum/views/play_title.dart';
+import 'package:cisum/views/playing/play_control.dart';
+import 'package:cisum/views/playing/play_cover.dart';
+import 'package:cisum/views/playing/play_slider.dart';
+import 'package:cisum/views/playing/play_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -3,7 +3,7 @@ import 'package:cisum/entities/database.dart';
 import 'package:cisum/entities/logger.dart';
 import 'package:cisum/provider/player.dart';
 import 'package:cisum/provider/playlist.dart';
-import 'package:cisum/views/database_table.dart';
+import 'package:cisum/views/database/database_table.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
