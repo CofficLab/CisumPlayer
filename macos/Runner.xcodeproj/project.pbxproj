@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0B20C6A92BADC76700AB7801 /* AppInfo.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0B20C6902BADC76600AB7801 /* AppInfo.xcconfig */; };
+		0B20C6AA2BADC76700AB7801 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0B20C6912BADC76600AB7801 /* Debug.xcconfig */; };
+		0B20C6AB2BADC76700AB7801 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0B20C6922BADC76600AB7801 /* Release.xcconfig */; };
+		0B20C6AC2BADC76700AB7801 /* Warnings.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0B20C6932BADC76600AB7801 /* Warnings.xcconfig */; };
 		0B20C6AD2BADC76700AB7801 /* MediaPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6952BADC76600AB7801 /* MediaPlayerManager.swift */; };
 		0B20C6AE2BADC76700AB7801 /* Booter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6972BADC76600AB7801 /* Booter.swift */; };
 		0B20C6AF2BADC76700AB7801 /* SuperDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6992BADC76600AB7801 /* SuperDB.swift */; };
@@ -35,7 +39,6 @@
 		0B20C6B82BADC76700AB7801 /* MessageChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6A42BADC76700AB7801 /* MessageChannel.swift */; };
 		0B20C6B92BADC76700AB7801 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6A62BADC76700AB7801 /* StringHelper.swift */; };
 		0B20C6BA2BADC76700AB7801 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B20C6A72BADC76700AB7801 /* TimeHelper.swift */; };
-		0B20C6BB2BADD53B00AB7801 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F72044A3C60003C045 /* Info.plist */; };
 		0FE0931AADFC4B27A1892EA9 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDED56258B08349760DFD90 /* Pods_Runner.framework */; };
 		331C80D8294CF71000263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C80D7294CF71000263BE5 /* RunnerTests.swift */; };
 		335BBD1B22A9A15E00E9071D /* GeneratedPluginRegistrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335BBD1A22A9A15E00E9071D /* GeneratedPluginRegistrant.swift */; };
@@ -79,6 +82,10 @@
 /* Begin PBXFileReference section */
 		0610D31B85C06A65013125C5 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		0B20C68F2BADC38D00AB7801 /* RunnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerDebug.entitlements; sourceTree = "<group>"; };
+		0B20C6902BADC76600AB7801 /* AppInfo.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
+		0B20C6912BADC76600AB7801 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		0B20C6922BADC76600AB7801 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		0B20C6932BADC76600AB7801 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		0B20C6952BADC76600AB7801 /* MediaPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaPlayerManager.swift; sourceTree = "<group>"; };
 		0B20C6972BADC76600AB7801 /* Booter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booter.swift; sourceTree = "<group>"; };
 		0B20C6992BADC76600AB7801 /* SuperDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperDB.swift; sourceTree = "<group>"; };
@@ -140,6 +147,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B20C6942BADC76600AB7801 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				0B20C6902BADC76600AB7801 /* AppInfo.xcconfig */,
+				0B20C6912BADC76600AB7801 /* Debug.xcconfig */,
+				0B20C6922BADC76600AB7801 /* Release.xcconfig */,
+				0B20C6932BADC76600AB7801 /* Warnings.xcconfig */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		0B20C6962BADC76600AB7801 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +281,7 @@
 			children = (
 				0B20C6982BADC76600AB7801 /* Boot */,
 				0B20C6A52BADC76700AB7801 /* Channels */,
+				0B20C6942BADC76600AB7801 /* Configs */,
 				0B20C69D2BADC76600AB7801 /* Contract */,
 				0B20C6A02BADC76600AB7801 /* Error */,
 				0B20C6A82BADC76700AB7801 /* Helper */,
@@ -406,9 +425,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B20C6AA2BADC76700AB7801 /* Debug.xcconfig in Resources */,
+				0B20C6A92BADC76700AB7801 /* AppInfo.xcconfig in Resources */,
 				33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */,
+				0B20C6AC2BADC76700AB7801 /* Warnings.xcconfig in Resources */,
 				33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */,
-				0B20C6BB2BADD53B00AB7801 /* Info.plist in Resources */,
+				0B20C6AB2BADC76700AB7801 /* Release.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
