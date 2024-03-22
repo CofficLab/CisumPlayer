@@ -29,6 +29,8 @@ features:
     details: 针对 iCloud 进行了优化
   - title: 优雅简洁的界面
     details: 简洁、明确，无心智负担
+  - title: 无广告、无干扰
+    details: 尊重用户体验
 ---
 
 <script setup>
