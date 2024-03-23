@@ -17,15 +17,18 @@ jobs:
   build_macOS:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: pwd
-      - run: ls -alh
-        # https://flutter.cn/docs/deployment/cd#requirements
+      - name: 拉取代码
+        uses: actions/checkout@v4
       - name: 准备 Flutter 环境
-        run: |
-          echo "==== Flutter"
-          pwd
-          sh macos/ci_scripts/ci_post_clone.sh
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.2'
+          channel: 'stable'
+      - run: flutter --version
+      - run: dart --version
+      - run: flutter precache --macos
+      - run: flutter pub get
+      - run: flutter build macos --config-only
       - uses: mxcl/xcodebuild@v1
         with:
           platform: macos
