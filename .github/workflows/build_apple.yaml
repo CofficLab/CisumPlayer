@@ -22,7 +22,10 @@ jobs:
       - run: ls -alh
         # https://flutter.cn/docs/deployment/cd#requirements
       - name: 准备 Flutter 环境
-        run: sh macos/ci_scripts/ci_post_clone.sh
+        run: |
+          echo "==== Flutter"
+          pwd
+          sh macos/ci_scripts/ci_post_clone.sh
       - uses: mxcl/xcodebuild@v1
         with:
           platform: macos

@@ -11,6 +11,8 @@ git clone https://github.com/flutter/flutter.git --depth 1 -b stable $HOME/flutt
 export PATH="$PATH:$HOME/flutter/bin"
 
 # Install Flutter artifacts for iOS (--ios), or macOS (--macos) platforms.
+pwd
+echo "==== Precache"
 flutter precache --macos
 
 # Install Flutter dependencies.
