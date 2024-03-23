@@ -31,7 +31,7 @@ jobs:
       - run: flutter build macos --config-only
       - uses: mxcl/xcodebuild@v1
         with:
-          platform: macos
+          #   platform: macos
           working-directory: macos
           authentication-key-base64: ${{ secrets.APP_STORE_CONNECT_KEY_BASE64 }}
           authentication-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
