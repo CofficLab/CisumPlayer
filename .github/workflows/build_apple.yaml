@@ -19,6 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: cd macos
+      - run: pwd
+      - run: ls -alh
       - run: sh ci_scripts/ci_post_clone.sh
       - uses: mxcl/xcodebuild@v1
         with:
