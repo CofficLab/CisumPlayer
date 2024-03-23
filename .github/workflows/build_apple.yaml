@@ -1,0 +1,28 @@
+# 准备工作：
+# 1. AppStoreConnect网站-APP-用户和访问-集成-API，创建一个密钥，下载下来
+# 2. base64 -i AuthKey_XXX.p8
+# 3. GitHub Actions Secrets 添加
+#   APP_STORE_CONNECT_KEY_BASE64
+#   APP_STORE_CONNECT_KEY_ID
+#   APP_STORE_CONNECT_KEY_ISSER_ID
+
+on:
+  push:
+    branches:
+      - test
+
+name: Build With Sign
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: cd macos
+      - run: sh ci_scripts/ci_post_clone.sh
+      - uses: mxcl/xcodebuild@v1
+        with:
+          platform: macos
+          authentication-key-base64: ${{ secrets.APP_STORE_CONNECT_KEY_BASE64 }}
+          authentication-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          authentication-key-issuer-id: ${{ secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}
