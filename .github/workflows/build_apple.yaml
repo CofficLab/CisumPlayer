@@ -45,12 +45,23 @@ jobs:
           authentication-key-issuer-id: ${{ secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}
       #   - run: ls -alh macos/build/Release
       - run: ls -alh /Users/runner/work/_temp
-      - run: |
+      - name: 生成 App Store Connect API 的 AuthKey
+        env:
+          APPSTORE_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APPSTORE_API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_KEY_BASE64 }}
+        run: |
+          mkdir -p ./private_keys
+          echo "$APPSTORE_API_PRIVATE_KEY" > ./private_keys/AuthKey_$APPSTORE_API_KEY_ID.p8
+      - name: build
+        env:
+          APPSTORE_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          APPSTORE_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}
+        run: |
           xcodebuild -destination platform=macOS \
           -scheme Runner -workspace Runner.xcworkspace \
           -configuration Release -allowProvisioningDeviceRegistration \
           -allowProvisioningUpdates \
-          -authenticationKeyPath /Users/runner/work/_temp/AuthKey_NY2PFT8WKR.p8 \
+          -authenticationKeyPath $(pwd)/private_keys/AuthKey_$APPSTORE_API_KEY_ID.p8 \
           -authenticationKeyID ${{ secrets.APP_STORE_CONNECT_KEY_ID }} \
           -authenticationKeyIssuerID ${{secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}\
           -resultBundlePath build.xcresult build
