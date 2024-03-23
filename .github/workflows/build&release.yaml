@@ -50,7 +50,7 @@ jobs:
       - run: flutter --version
       - run: dart --version
       - run: flutter pub get
-      - run: flutter build ios --release
+      - run: flutter build ios --release --no-codesign
       - name: 上传构件
         uses: actions/upload-artifact@v3
         with:
