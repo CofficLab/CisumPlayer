@@ -1,7 +1,7 @@
 name: cisum
 description: "A new Flutter project."
 publish_to: 'none'
-version: 2.1.23+96
+version: 2.1.24+97
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
