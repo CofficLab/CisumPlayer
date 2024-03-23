@@ -2,12 +2,12 @@
 on:
   push:
     tags:
-      - '2021*'
-  # workflow_run:
-  #   workflows:
-  #     - "Bump"
-  #   types:
-  #     - completed
+      - '*'
+  workflow_run:
+    workflows:
+      - 'Bump'
+    types:
+      - completed
 
 permissions:
   contents: write
