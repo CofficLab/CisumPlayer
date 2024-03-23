@@ -15,8 +15,12 @@ name: Build With Sign
 
 jobs:
   build_macOS:
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
+      - name: 检查环境
+        run: |
+          sw_vers -productVersion
+          xcodebuild -version
       - name: 拉取代码
         uses: actions/checkout@v4
       - name: 准备 Flutter 环境
@@ -29,13 +33,13 @@ jobs:
       - run: flutter precache --macos
       - run: flutter pub get
       - run: flutter build macos --config-only
-      - uses: mxcl/xcodebuild@v1
+      - uses: mxcl/xcodebuild@v2
         with:
           working-directory: macos
-          xcode: ^15
           action: build
           configuration: release
           scheme: Runner
           authentication-key-base64: ${{ secrets.APP_STORE_CONNECT_KEY_BASE64 }}
           authentication-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
           authentication-key-issuer-id: ${{ secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}
+      - run: pwd
