@@ -33,7 +33,7 @@ jobs:
       - run: flutter precache --macos
       - run: flutter pub get
       - run: flutter build macos --config-only
-      - uses: mxcl/xcodebuild@v2
+      - uses: mxcl/xcodebuild@v1
         with:
           working-directory: macos
           workspace: Runner.xcworkspace
