@@ -17,10 +17,10 @@ jobs:
   build_macOS:
     runs-on: macos-14
     steps:
-      - name: 检查环境
-        run: |
-          sw_vers -productVersion
-          xcodebuild -version
+      - run: sw_vers -productVersion
+      - run: xcodebuild -version
+      - run: sudo xcode-select --switch /Applications/Xcode_15.2.app
+      - run: xcodebuild -version
       - name: 拉取代码
         uses: actions/checkout@v4
       - name: 准备 Flutter 环境
@@ -36,6 +36,7 @@ jobs:
       - uses: mxcl/xcodebuild@v2
         with:
           working-directory: macos
+          workspace: Runner.xcworkspace
           action: build
           configuration: release
           scheme: Runner
