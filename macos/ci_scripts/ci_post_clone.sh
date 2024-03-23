@@ -21,8 +21,10 @@ HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
 brew install cocoapods
 
 # Install CocoaPods dependencies.
-cd macos && pod install # run `pod install` in the `macos` directory.
+echo "==== Pod install"
+pod install --project-directory=macos # run `pod install` in the `macos` directory.
 
+echo "==== Build"
 flutter build macos --config-only
 
 exit 0

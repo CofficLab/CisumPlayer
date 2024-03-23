@@ -14,7 +14,7 @@ on:
 name: Build With Sign
 
 jobs:
-  build:
+  build_macOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
