@@ -2,14 +2,14 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Cisum",
+  title: "Coffic",
   description: "简洁好用的音乐播放器",
-  base: "/Cisum/",
+  base: "/Coffic/",
   srcDir: "docs",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      // { text: 'Home', link: '/Cisum' },
+      // { text: 'Home', link: '/Coffic' },
       // { text: 'Examples', link: '/markdown-examples' }
     ],
 
@@ -26,7 +26,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/YueyiNet/Cisum' }
+      { icon: 'github', link: 'https://github.com/YueyiNet/Coffic' }
     ],
 
     footer: {
