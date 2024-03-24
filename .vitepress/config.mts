@@ -9,16 +9,17 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      // { text: 'Home', link: '/Coffic' },
-      // { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Home', link: '/' },
+      { text: '文档', link: '/github-actions' }
     ],
 
     logo: '/images/logo.png',
 
     sidebar: [
       {
-        text: 'Examples',
+        text: '文档',
         items: [
+          { text: 'GitHub Actions', link: '/github-actions' },
           { text: 'Markdown Examples', link: '/markdown-examples' },
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
