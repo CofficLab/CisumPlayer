@@ -6,6 +6,7 @@ export default defineConfig({
   description: "简洁好用的音乐播放器",
   base: "/Coffic/",
   srcDir: "docs",
+  head: [['link', { rel: 'icon', href: '/Coffic/favicon.ico' }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
