@@ -1,9 +1,9 @@
-import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/database.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/playlist.dart';
-import 'package:cisum/provider/player.dart';
-import 'package:cisum/views/database/database_cell.dart';
+import 'package:coffic/entities/audio.dart';
+import 'package:coffic/entities/database.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/entities/playlist.dart';
+import 'package:coffic/provider/player.dart';
+import 'package:coffic/views/database/database_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

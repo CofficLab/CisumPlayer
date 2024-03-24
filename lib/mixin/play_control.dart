@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/playlist.dart';
+import 'package:coffic/entities/audio.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/entities/playlist.dart';
 
 mixin PlayControlMixin {
   AudioPlayer player = AudioPlayer();

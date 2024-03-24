@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'package:cisum/menus.dart';
-import 'package:cisum/provider/player.dart';
-import 'package:cisum/views/database/database.dart';
-import 'package:cisum/views/playing/playing.dart';
+import 'package:coffic/menus.dart';
+import 'package:coffic/provider/player.dart';
+import 'package:coffic/views/database/database.dart';
+import 'package:coffic/views/playing/playing.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';

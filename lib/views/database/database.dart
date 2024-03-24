@@ -1,8 +1,8 @@
-import 'package:cisum/entities/database.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/playlist.dart';
-import 'package:cisum/provider/player.dart';
-import 'package:cisum/views/database/database_table.dart';
+import 'package:coffic/entities/database.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/entities/playlist.dart';
+import 'package:coffic/provider/player.dart';
+import 'package:coffic/views/database/database_table.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_drag_and_drop/super_drag_and_drop.dart';
