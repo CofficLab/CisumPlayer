@@ -1,0 +1,49 @@
+# 打包苹果应用
+# 准备工作：
+# 1. AppStoreConnect网站-APP-用户和访问-集成-API，创建一个密钥，下载下来
+# 2. base64 -i AuthKey_XXX.p8
+# 3. GitHub Actions Secrets 添加
+#   APP_STORE_CONNECT_KEY_BASE64
+#   APP_STORE_CONNECT_KEY_ID
+#   APP_STORE_CONNECT_KEY_ISSER_ID
+# 原理：调用 AppStoreConnect API
+# 20240324：使用的GitHub Action mxcl/xcodebuild@v2 很久没更新，存在问题
+# 20240324：使用Xcode Cloud来做持续集成
+
+on:
+  push:
+    branches:
+      - deprecated
+
+name: Build Apple Platform Applications(1)
+
+jobs:
+  build_macOS:
+    runs-on: macos-14
+    steps:
+      - run: sw_vers -productVersion
+      - run: xcodebuild -version
+      - run: sudo xcode-select --switch /Applications/Xcode_15.2.app
+      - run: xcodebuild -version
+      - name: 拉取代码
+        uses: actions/checkout@v4
+      - name: 准备 Flutter 环境
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.2'
+          channel: 'stable'
+      - run: flutter --version
+      - run: dart --version
+      - run: flutter precache --macos
+      - run: flutter pub get
+      - run: flutter build macos --config-only
+      - uses: mxcl/xcodebuild@v2
+        with:
+          working-directory: macos
+          workspace: Runner.xcworkspace
+          action: none
+          configuration: release
+          scheme: Runner
+          authentication-key-base64: ${{ secrets.APP_STORE_CONNECT_KEY_BASE64 }}
+          authentication-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          authentication-key-issuer-id: ${{ secrets.APP_STORE_CONNECT_KEY_ISSER_ID }}

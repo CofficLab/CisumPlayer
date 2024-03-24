@@ -1,19 +1,21 @@
-# 构建并签名，发送到App Store Connect
+# 打包苹果应用
 # 准备工作：
-# 1. AppStoreConnect网站-APP-用户和访问-集成-API，创建一个密钥
+# 1. AppStoreConnect网站-APP-用户和访问-集成-API，创建一个密钥，下载下来
+# 2. base64 -i AuthKey_XXX.p8
+# 3. GitHub Actions Secrets 添加
+#   APP_STORE_CONNECT_KEY_BASE64
+#   APP_STORE_CONNECT_KEY_ID
+#   APP_STORE_CONNECT_KEY_ISSER_ID
+# 4. 按这个步骤操作：https://docs.github.com/zh/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+# 原理：把本地开发的证书之类的凭据导入到GitHub Action的电脑
+# 20240324：使用Xcode Cloud来做持续集成
 
 on:
   push:
     branches:
-      - nonthing
+      - deprecated
 
-permissions:
-  contents: write
-
-env:
-  APPSTORE_API_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
-
-name: Upload
+name: Build Apple Platform Applications(2)
 
 jobs:
   build_with_signing:
@@ -21,7 +23,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      # https://docs.github.com/zh/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
@@ -86,6 +87,6 @@ jobs:
           # 执行 xcrun altool -h 查看文档得知：私钥文件 AuthKey_<api_key>.p8 放在 ./private_keys 目录，会自动使用
           xcrun altool --upload-app \
             --type macos \
-            -f ci/pkg/快易知.pkg \
+            -f ci/pkg/xxx.pkg \
             --apiKey $APPSTORE_API_KEY_ID \
             --apiIssuer $APPSTORE_API_ISSUER_ID
