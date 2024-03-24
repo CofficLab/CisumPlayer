@@ -22,7 +22,7 @@ env:
 
 jobs:
   build_android:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: 准备 Flutter 环境
@@ -33,6 +33,7 @@ jobs:
       - run: flutter --version
       - run: dart --version
       - run: flutter pub get
+      # - run: flutter build apk --debug --split-per-abi
 
   build_windows:
     runs-on: windows-latest
