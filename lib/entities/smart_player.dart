@@ -1,9 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/channels/media_channel.dart';
-import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/mixin/play_control.dart';
-import 'package:cisum/mixin/play_callback.dart';
+import 'package:coffic/channels/media_channel.dart';
+import 'package:coffic/entities/audio.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/mixin/play_control.dart';
+import 'package:coffic/mixin/play_callback.dart';
 
 class SmartPlayer with PlayControlMixin, PlayCallbackMixin {
   late MediaChannel mediaChannel;

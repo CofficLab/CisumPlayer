@@ -1,8 +1,8 @@
-import 'package:cisum/provider/player.dart';
-import 'package:cisum/views/playing/play_control.dart';
-import 'package:cisum/views/playing/play_cover.dart';
-import 'package:cisum/views/playing/play_slider.dart';
-import 'package:cisum/views/playing/play_title.dart';
+import 'package:coffic/provider/player.dart';
+import 'package:coffic/views/playing/play_control.dart';
+import 'package:coffic/views/playing/play_cover.dart';
+import 'package:coffic/views/playing/play_slider.dart';
+import 'package:coffic/views/playing/play_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

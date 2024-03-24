@@ -1,5 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/components/button_control.dart';
+import 'package:coffic/components/button_control.dart';
 import 'package:flutter/material.dart';
 
 class ButtonMode extends StatelessWidget {

@@ -1,4 +1,4 @@
-import 'package:cisum/entities/logger.dart';
+import 'package:coffic/entities/logger.dart';
 import 'package:flutter/services.dart';
 
 class MessageChannel {

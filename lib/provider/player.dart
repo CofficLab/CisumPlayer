@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:cisum/channels/media_channel.dart';
-import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/smart_player.dart';
+import 'package:coffic/channels/media_channel.dart';
+import 'package:coffic/entities/audio.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/entities/smart_player.dart';
 import 'package:flutter/material.dart';
 
 class PlayerProvider extends ChangeNotifier {

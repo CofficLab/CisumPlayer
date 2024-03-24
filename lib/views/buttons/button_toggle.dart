@@ -1,5 +1,5 @@
-import 'package:cisum/components/button_control.dart';
-import 'package:cisum/provider/player.dart';
+import 'package:coffic/components/button_control.dart';
+import 'package:coffic/provider/player.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:cisum/entities/audio.dart';
-import 'package:cisum/entities/logger.dart';
-import 'package:cisum/entities/playlist.dart';
+import 'package:coffic/entities/audio.dart';
+import 'package:coffic/entities/logger.dart';
+import 'package:coffic/entities/playlist.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';

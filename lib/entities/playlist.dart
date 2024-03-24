@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:cisum/entities/audio.dart';
+import 'package:coffic/entities/audio.dart';
 
 class PlaylistModel {
   PlaylistModel({required this.audios});
