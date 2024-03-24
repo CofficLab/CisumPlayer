@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Cisum"
+  name: "Coffic"
   text: "听音乐本该如此简单"
   tagline: 打造自己的音乐库
   image: 
@@ -23,7 +23,7 @@ hero:
       link: https://apps.apple.com/cn/app/cisum/id6466401036
     - theme: alt
       text: GitHub
-      link: https://github.com/YueyiNet/Cisum
+      link: https://github.com/YueyiNet/Coffic
 
 features:
   - icon: 🔕
