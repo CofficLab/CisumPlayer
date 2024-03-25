@@ -2,7 +2,6 @@
 
 简洁的音乐播放器。
 
-[产品介绍](https://yueyinet.github.io/products/cisum)
+<a href="https://yueyinet.github.io/products/cisum" target="_blank">产品介绍</a>
 
-
-[App Store(iOS&macOS)](https://apps.apple.com/cn/app/cisum/id6466401036)
+<a href="https://apps.apple.com/cn/app/cisum/id6466401036" target="_blank">App Store(iOS&macOS)</a>
